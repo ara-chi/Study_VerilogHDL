@@ -1,23 +1,22 @@
-//module full_adder(
-//  input  wire i_A ,    // Input A
-//  input  wire i_B ,    // Input B
-//  input  wire i_carry, // Input carry
-//  output wire o_S,     // Output sum
-//  output wire o_carry  // Output carry
-//);
-//
-//  assign o_S = (i_A ^ i_B) ^ i_carry;  // Compute the sum output
-//  assign o_carry = ((i_A ^ i_B) & i_carry) | (i_A & i_B);  // Compute the carry output
-//
-//endmodule
+module full_adder(
+  input  wire i_A ,    // Input A
+  input  wire i_B ,    // Input B
+  input  wire i_carry, // Input carry
+  output wire o_S,     // Output sum
+  output wire o_carry  // Output carry
+);
+
+  assign o_S = (i_A ^ i_B) ^ i_carry;  // Compute the sum output
+  assign o_carry = ((i_A ^ i_B) & i_carry) | (i_A & i_B);  // Compute the carry output
+
+endmodule
 
 module n_bit_adder #(
   parameter WIDTH = 4
 )(
   input  wire [WIDTH-1:0] i_A ,      // Input A
   input  wire [WIDTH-1:0] i_B ,      // Input B
-  output wire [WIDTH-1:0] o_S,       // Output sum
-  output reg              o_carry    // Output carry
+  output wire [WIDTH-1:0] o_S        // Output sum
 );
 
   wire [WIDTH:0]   i_carry;         // Declare an array of wires for carry input to each full adder
