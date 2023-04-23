@@ -7,7 +7,7 @@ module n_bit_piso_shift_reg #(
   output reg              o_serial  = 1'b0     // Serial signal
 );
 
-reg [WIDTH-1:0] shift_reg;
+  reg [WIDTH-1:0] shift_reg = {WIDTH{1'b0}};
 
 always @(posedge clk) begin
   if (rst) begin
