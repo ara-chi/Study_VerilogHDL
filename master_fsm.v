@@ -57,7 +57,10 @@ module master_fsm(
         WAIT_SLAVE_FSM: begin
           // Increment timeout counter and check for time-out or completion signals
           timeout_counter <= timeout_counter + 1'd1;
-          if ((timeout) | (~slave_fsm_busy & slave_fsm_done)) begin
+          if (timeout) begin
+            state <= ERROR;
+          end
+          else if (~slave_fsm_busy && slave_fsm_done) begin
             // Transition back to idle state when time-out or completion signals are detected
             state <= IDLE;
             busy <= 1'b0;
