@@ -3,7 +3,7 @@ module n_bit_sipo_shift_reg #(
 )(
   input  wire             clk        , // Clock signal
   input  wire             rst        , // Reset signal
-  input  wire [WIDTH-1:0] i_serial   , // Serial signal
+  input  wire             i_serial   , // Serial signal
   output reg  [WIDTH-1:0] o_parallel   // Parallel signal
 );
 
