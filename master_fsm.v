@@ -4,7 +4,7 @@ module master_fsm(
   input  wire       start        ,  // Start signal
   output reg  [1:0] state = IDLE ,  // FSM state
   output reg        busy  = 1'b0 ,  // Busy signal
-  output reg        done  = 1'b1    // Done signal
+  output reg        done  = 1'b0    // Done signal
 );
 
   // FSM states
@@ -34,7 +34,7 @@ module master_fsm(
       state <= IDLE;
       slave_fsm_start <= 1'b0;
       busy <= 1'b0;
-      done <= 1'b1;
+      done <= 1'b0;
       timeout_counter <= 32'd0;
       timeout <= 1'b0;
     end
@@ -63,6 +63,10 @@ module master_fsm(
             busy <= 1'b0;
             done <= 1'b1;
           end
+        end
+        ERROR: begin
+          // Transition to IDLE state
+          state <= IDLE;
         end
         default: begin
           // Transition to error state for undefined FSM states
