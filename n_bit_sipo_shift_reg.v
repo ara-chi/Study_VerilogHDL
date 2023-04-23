@@ -1,13 +1,13 @@
 module n_bit_sipo_shift_reg #(
   parameter WIDTH = 8 // number of bits in the shift register
 )(
-  input  wire             clk        , // Clock signal
-  input  wire             rst        , // Reset signal
-  input  wire             i_serial   , // Serial signal
-  output reg  [WIDTH-1:0] o_parallel   // Parallel signal
+  input  wire             clk                        , // Clock signal
+  input  wire             rst                        , // Reset signal
+  input  wire             i_serial                   , // Serial signal
+  output reg  [WIDTH-1:0] o_parallel = {WIDTH{1'b0}}   // Parallel signal
 );
 
-reg [WIDTH-1:0] shift_reg;
+  reg [WIDTH-1:0] shift_reg = {WIDTH{1'b0}};
 
 always @(posedge clk) begin
   if (rst) begin
